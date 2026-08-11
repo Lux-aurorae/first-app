@@ -1,184 +1,464 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
+:root {
+  /* 한지 */
+  --paper: #efe3c8;
+  --paper-light: #f8f1de;
+  --paper-deep: #e2d1ad;
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+  /* 먹 */
+  --ink: #2b2118;
+  --ink-soft: #7a6849;
+  --ink-line: rgba(43, 33, 24, 0.45);
+
+  /* 단청 */
+  --dan-green: #4f7a3f; /* 송엽록 — 승 */
+  --dan-red: #b4322a; /* 진사홍 — 패 */
+  --dan-gold: #d99b2b; /* 치자황 — 무 */
+  --dan-indigo: #2f4a78; /* 청 */
+
+  --radius: 3px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+/* ── 배경: 한지 섬유 결 ─────────────────────────── */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 18% 15%, rgba(255, 255, 255, 0.55), transparent 55%),
+    radial-gradient(circle at 82% 78%, rgba(200, 176, 132, 0.5), transparent 52%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(120, 95, 60, 0.045) 0 1px,
+      transparent 1px 4px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(120, 95, 60, 0.03) 0 1px,
+      transparent 1px 6px
+    );
+  color: var(--ink);
+  font-family: "Gowun Dodum", "Apple SD Gothic Neo", sans-serif;
 }
 
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
+/* ── 무대 & 액자 ────────────────────────────────── */
+.stage {
+  min-height: 100vh;
+  display: grid;
   place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
+  padding: clamp(16px, 4vw, 48px);
+  box-sizing: border-box;
 }
 
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
-}
-
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
-.ticks {
+.frame {
   position: relative;
   width: 100%;
+  max-width: 940px;
+  padding: clamp(24px, 5vw, 56px);
+  box-sizing: border-box;
+  border: 2px solid var(--ink);
+  background: linear-gradient(
+    170deg,
+    rgba(255, 255, 255, 0.42),
+    rgba(255, 255, 255, 0)
+  );
+  box-shadow: 0 24px 60px -30px rgba(43, 33, 24, 0.55);
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
+/* 이중 테두리 */
+.frame::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid var(--ink-line);
+  pointer-events: none;
+}
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
+/* 네 모서리 국화 점 */
+.frame::after {
+  content: "";
+  position: absolute;
+  inset: 15px;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-image:
+    radial-gradient(circle 4px at left top, var(--dan-gold) 98%, transparent 100%),
+    radial-gradient(circle 4px at right top, var(--dan-gold) 98%, transparent 100%),
+    radial-gradient(circle 4px at left bottom, var(--dan-gold) 98%, transparent 100%),
+    radial-gradient(circle 4px at right bottom, var(--dan-gold) 98%, transparent 100%);
+}
+
+/* ===========================================================
+   시작 화면
+   =========================================================== */
+.intro {
+  text-align: center;
+  animation: rise 0.7s var(--ease) both;
+}
+
+.intro__eyebrow {
+  margin: 0 0 10px;
+  font-size: 0.78rem;
+  letter-spacing: 0.4em;
+  text-indent: 0.4em;
+  color: var(--ink-soft);
+}
+
+.intro__title {
+  margin: 0;
+  font-family: "Gowun Batang", serif;
+  font-weight: 700;
+  font-size: clamp(2.4rem, 8vw, 4rem);
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
+  line-height: 1.15;
+}
+
+.intro__sub {
+  margin: 12px 0 26px;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.intro__art {
+  border: 1px solid var(--ink-line);
+  padding: 6px;
+  background: var(--paper-light);
+  margin-bottom: 30px;
+}
+
+.intro__art img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.intro__hint {
+  margin: 18px 0 0;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+/* ===========================================================
+   게임 화면
+   =========================================================== */
+.game {
+  animation: rise 0.6s var(--ease) both;
+}
+
+.game__head {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.game__title {
+  margin: 0;
+  font-family: "Gowun Batang", serif;
+  font-size: clamp(1.7rem, 5vw, 2.4rem);
+  letter-spacing: 0.2em;
+  text-indent: 0.2em;
+}
+
+.game__round {
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: var(--ink-soft);
+}
+
+/* ── 전적 ───────────────────────────────────────── */
+.tally {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 26px;
+  font-size: 0.85rem;
+}
+
+.tally__item {
+  font-family: "Gowun Batang", serif;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+}
+
+.tally__item b {
+  font-size: 1.15rem;
+  margin-left: 4px;
+}
+
+.tally__item--win b { color: var(--dan-green); }
+.tally__item--lose b { color: var(--dan-red); }
+.tally__item--tie b { color: var(--dan-gold); }
+
+.tally__sep {
+  width: 1px;
+  height: 14px;
+  background: var(--ink-line);
+}
+
+/* ── 대국판 ─────────────────────────────────────── */
+.board {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(14px, 3vw, 26px);
+}
+
+.box {
+  background: var(--paper-light);
+  border: 2px solid var(--ink-line);
+  padding: 14px;
+  transition:
+    border-color 0.4s var(--ease),
+    box-shadow 0.4s var(--ease),
+    transform 0.4s var(--ease);
+}
+
+/* [숙제 2] 결과에 따른 테두리 색 */
+.box--win {
+  border-color: var(--dan-green);
+  box-shadow: 0 0 0 4px rgba(79, 122, 63, 0.14);
+  transform: translateY(-3px);
+}
+
+.box--lose {
+  border-color: var(--dan-red);
+  box-shadow: 0 0 0 4px rgba(180, 50, 42, 0.14);
+}
+
+.box--tie {
+  border-color: var(--dan-gold);
+  box-shadow: 0 0 0 4px rgba(217, 155, 43, 0.14);
+}
+
+.box__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--ink-line);
+}
+
+.box__title {
+  font-family: "Gowun Batang", serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.14em;
+}
+
+.box__subtitle {
+  font-size: 0.66rem;
+  letter-spacing: 0.24em;
+  color: var(--ink-soft);
+}
+
+.box__frame {
+  position: relative;
+  aspect-ratio: 11 / 6;
+  display: grid;
+  place-items: center;
+  background: var(--paper-deep);
+  overflow: hidden;
+}
+
+.box__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  animation: deal 0.45s var(--ease) both;
+}
+
+.box__empty {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.08em;
+}
+
+/* ── 낙관(도장) ─────────────────────────────────── */
+.seal {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  font-family: "Gowun Batang", serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fdf6e6;
+  border-radius: var(--radius);
+  transform: rotate(-7deg);
+  box-shadow: 0 3px 10px rgba(43, 33, 24, 0.3);
+  animation: stamp 0.42s cubic-bezier(0.18, 1.4, 0.4, 1) both;
+}
+
+.seal--win { background: var(--dan-green); }
+.seal--lose { background: var(--dan-red); }
+.seal--tie { background: var(--dan-gold); }
+
+.box__foot {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.box__pick {
+  font-family: "Gowun Batang", serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+}
+
+.box__pick--idle { color: var(--ink-soft); }
+
+.box__roman {
+  font-size: 0.64rem;
+  letter-spacing: 0.2em;
+  color: var(--ink-soft);
+}
+
+.box__result {
+  margin-left: auto;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+}
+
+/* ── 판정 문구 ──────────────────────────────────── */
+.verdict {
+  text-align: center;
+  margin: 26px 0;
+  font-family: "Gowun Batang", serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+  transition: color 0.35s var(--ease);
+}
+
+.verdict--win { color: var(--dan-green); }
+.verdict--lose { color: var(--dan-red); }
+.verdict--tie { color: var(--dan-gold); }
+
+/* ===========================================================
+   버튼
+   =========================================================== */
+.btn {
+  font-family: inherit;
+  color: var(--ink);
+  background: var(--paper-light);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition:
+    transform 0.2s var(--ease),
+    background 0.2s var(--ease),
+    box-shadow 0.2s var(--ease);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--dan-indigo);
+  outline-offset: 3px;
+}
+
+.btn--start {
+  padding: 14px 42px;
+  font-family: "Gowun Batang", serif;
+  font-size: 1rem;
+  letter-spacing: 0.24em;
+  text-indent: 0.24em;
+}
+
+.btn--start:hover {
+  background: var(--ink);
+  color: var(--paper-light);
+  transform: translateY(-2px);
+}
+
+.hands {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn--hand {
+  display: grid;
+  gap: 3px;
+  padding: 14px 30px;
+  min-width: 104px;
+}
+
+.btn--hand:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px -10px rgba(43, 33, 24, 0.7);
+  background: #fffaf0;
+}
+
+.btn--hand:active { transform: translateY(0); }
+
+.btn__ko {
+  font-family: "Gowun Batang", serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.14em;
+}
+
+.btn__en {
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  color: var(--ink-soft);
+}
+
+.btn--ghost {
+  display: block;
+  margin: 24px auto 0;
+  padding: 8px 20px;
+  border: 1px solid var(--ink-line);
+  background: transparent;
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+}
+
+.btn--ghost:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+/* ===========================================================
+   애니메이션
+   =========================================================== */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes deal {
+  from { opacity: 0; transform: scale(1.06); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes stamp {
+  from { opacity: 0; transform: rotate(-7deg) scale(2.3); }
+  to { opacity: 1; transform: rotate(-7deg) scale(1); }
+}
+
+/* ===========================================================
+   반응형 & 접근성
+   =========================================================== */
+@media (max-width: 680px) {
+  .board { grid-template-columns: 1fr; }
+  .btn--hand { padding: 12px 20px; min-width: 88px; }
+  .seal { width: 44px; height: 44px; font-size: 1.3rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }
