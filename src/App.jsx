@@ -5,7 +5,7 @@ import StartScreen from "./component/StartScreen";
 import Box from "./component/Box";
 
 // [숙제 1의 핵심] 유저 관점 결과를 컴퓨터 관점으로 뒤집는 표.
-// judgement를 두 번 부르는 대신 이 표 하나로 반전시킵니다.
+// judgement를 두 번 부르는 대신 이 표 하나로 반전시키기.
 const OPPOSITE = { win: "lose", lose: "win", tie: "tie" };
 
 function App() {
@@ -24,13 +24,13 @@ function App() {
   };
 
   // ── 승패 판정 (유저 기준) ──────────────────────────
-  // 객체끼리 === 비교하면 항상 false이므로 반드시 .name으로 비교합니다.
+  // 객체끼리 === 비교하면 항상 false이므로 반드시 .name으로 비교하기
   const judgement = (user, computer) => {
     if (user.name === computer.name) return "tie";
     if (user.name === "rock") return computer.name === "scissors" ? "win" : "lose";
     if (user.name === "scissors") return computer.name === "paper" ? "win" : "lose";
     if (user.name === "paper") return computer.name === "rock" ? "win" : "lose";
-    return "tie"; // 세 경우를 모두 벗어나는 일은 없지만 안전장치로 둡니다
+    return "tie"; // 세 경우를 모두 벗어나는 일은 없지만 안전장치로 두기
   };
 
   // ── 한 판 진행 ────────────────────────────────────
@@ -39,8 +39,8 @@ function App() {
     const computerPick = randomChoice();
     const newResult = judgement(userPick, computerPick);
 
-    // ⚠️ setState 직후에는 그 state를 읽을 수 없습니다.
-    // 그래서 judgement에는 state가 아닌 위의 "지역 변수"를 넘깁니다.
+    // ⚠️ setState 직후에는 그 state를 읽을 수 없음.
+    // 그래서 judgement에는 state가 아닌 위의 "지역 변수"
     setUserSelect(userPick);
     setComputerSelect(computerPick);
     setResult(newResult);
@@ -133,6 +133,11 @@ function App() {
             )}
           </section>
         )}
+
+        {/* 액자 하단 서명 — 시작 화면과 게임 화면 모두에 표시 */}
+        <p className="signature">
+          코딩하는 누나 열심히 듣는 수강생 <b>dhee</b>
+        </p>
       </div>
     </main>
   );

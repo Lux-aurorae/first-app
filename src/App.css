@@ -11,9 +11,9 @@
 
   /* 단청 */
   --dan-green: #4f7a3f; /* 송엽록 — 승 */
-  --dan-red: #b4322a; /* 진사홍 — 패 */
-  --dan-gold: #d99b2b; /* 치자황 — 무 */
-  --dan-indigo: #2f4a78; /* 청 */
+  --dan-red: #b4322a;   /* 진사홍 — 패 */
+  --dan-gold: #d99b2b;  /* 치자황 — 무 */
+  --dan-indigo: #2f4a78;/* 청 */
 
   --radius: 3px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -27,16 +27,8 @@ body {
   background-image:
     radial-gradient(circle at 18% 15%, rgba(255, 255, 255, 0.55), transparent 55%),
     radial-gradient(circle at 82% 78%, rgba(200, 176, 132, 0.5), transparent 52%),
-    repeating-linear-gradient(
-      90deg,
-      rgba(120, 95, 60, 0.045) 0 1px,
-      transparent 1px 4px
-    ),
-    repeating-linear-gradient(
-      0deg,
-      rgba(120, 95, 60, 0.03) 0 1px,
-      transparent 1px 6px
-    );
+    repeating-linear-gradient(90deg, rgba(120, 95, 60, 0.045) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(0deg, rgba(120, 95, 60, 0.03) 0 1px, transparent 1px 6px);
   color: var(--ink);
   font-family: "Gowun Dodum", "Apple SD Gothic Neo", sans-serif;
 }
@@ -57,11 +49,7 @@ body {
   padding: clamp(24px, 5vw, 56px);
   box-sizing: border-box;
   border: 2px solid var(--ink);
-  background: linear-gradient(
-    170deg,
-    rgba(255, 255, 255, 0.42),
-    rgba(255, 255, 255, 0)
-  );
+  background: linear-gradient(170deg, rgba(255,255,255,0.42), rgba(255,255,255,0));
   box-shadow: 0 24px 60px -30px rgba(43, 33, 24, 0.55);
 }
 
@@ -91,10 +79,7 @@ body {
 /* ===========================================================
    시작 화면
    =========================================================== */
-.intro {
-  text-align: center;
-  animation: rise 0.7s var(--ease) both;
-}
+.intro { text-align: center; animation: rise 0.7s var(--ease) both; }
 
 .intro__eyebrow {
   margin: 0 0 10px;
@@ -114,11 +99,7 @@ body {
   line-height: 1.15;
 }
 
-.intro__sub {
-  margin: 12px 0 26px;
-  font-size: 0.9rem;
-  color: var(--ink-soft);
-}
+.intro__sub { margin: 12px 0 26px; font-size: 0.9rem; color: var(--ink-soft); }
 
 .intro__art {
   border: 1px solid var(--ink-line);
@@ -127,29 +108,16 @@ body {
   margin-bottom: 30px;
 }
 
-.intro__art img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
+.intro__art img { display: block; width: 100%; height: auto; }
 
-.intro__hint {
-  margin: 18px 0 0;
-  font-size: 0.82rem;
-  color: var(--ink-soft);
-}
+.intro__hint { margin: 18px 0 0; font-size: 0.82rem; color: var(--ink-soft); }
 
 /* ===========================================================
    게임 화면
    =========================================================== */
-.game {
-  animation: rise 0.6s var(--ease) both;
-}
+.game { animation: rise 0.6s var(--ease) both; }
 
-.game__head {
-  text-align: center;
-  margin-bottom: 18px;
-}
+.game__head { text-align: center; margin-bottom: 18px; }
 
 .game__title {
   margin: 0;
@@ -182,20 +150,12 @@ body {
   color: var(--ink-soft);
 }
 
-.tally__item b {
-  font-size: 1.15rem;
-  margin-left: 4px;
-}
-
+.tally__item b { font-size: 1.15rem; margin-left: 4px; }
 .tally__item--win b { color: var(--dan-green); }
 .tally__item--lose b { color: var(--dan-red); }
 .tally__item--tie b { color: var(--dan-gold); }
 
-.tally__sep {
-  width: 1px;
-  height: 14px;
-  background: var(--ink-line);
-}
+.tally__sep { width: 1px; height: 14px; background: var(--ink-line); }
 
 /* ── 대국판 ─────────────────────────────────────── */
 .board {
@@ -246,11 +206,7 @@ body {
   letter-spacing: 0.14em;
 }
 
-.box__subtitle {
-  font-size: 0.66rem;
-  letter-spacing: 0.24em;
-  color: var(--ink-soft);
-}
+.box__subtitle { font-size: 0.66rem; letter-spacing: 0.24em; color: var(--ink-soft); }
 
 .box__frame {
   position: relative;
@@ -299,12 +255,7 @@ body {
 .seal--lose { background: var(--dan-red); }
 .seal--tie { background: var(--dan-gold); }
 
-.box__foot {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  margin-top: 10px;
-}
+.box__foot { display: flex; align-items: baseline; gap: 8px; margin-top: 10px; }
 
 .box__pick {
   font-family: "Gowun Batang", serif;
@@ -314,11 +265,7 @@ body {
 
 .box__pick--idle { color: var(--ink-soft); }
 
-.box__roman {
-  font-size: 0.64rem;
-  letter-spacing: 0.2em;
-  color: var(--ink-soft);
-}
+.box__roman { font-size: 0.64rem; letter-spacing: 0.2em; color: var(--ink-soft); }
 
 .box__result {
   margin-left: auto;
@@ -358,10 +305,7 @@ body {
     box-shadow 0.2s var(--ease);
 }
 
-.btn:focus-visible {
-  outline: 2px solid var(--dan-indigo);
-  outline-offset: 3px;
-}
+.btn:focus-visible { outline: 2px solid var(--dan-indigo); outline-offset: 3px; }
 
 .btn--start {
   padding: 14px 42px;
@@ -377,19 +321,9 @@ body {
   transform: translateY(-2px);
 }
 
-.hands {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
+.hands { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
 
-.btn--hand {
-  display: grid;
-  gap: 3px;
-  padding: 14px 30px;
-  min-width: 104px;
-}
+.btn--hand { display: grid; gap: 3px; padding: 14px 30px; min-width: 104px; }
 
 .btn--hand:hover {
   transform: translateY(-3px);
@@ -405,11 +339,7 @@ body {
   letter-spacing: 0.14em;
 }
 
-.btn__en {
-  font-size: 0.6rem;
-  letter-spacing: 0.22em;
-  color: var(--ink-soft);
-}
+.btn__en { font-size: 0.6rem; letter-spacing: 0.22em; color: var(--ink-soft); }
 
 .btn--ghost {
   display: block;
@@ -422,10 +352,7 @@ body {
   color: var(--ink-soft);
 }
 
-.btn--ghost:hover {
-  border-color: var(--ink);
-  color: var(--ink);
-}
+.btn--ghost:hover { border-color: var(--ink); color: var(--ink); }
 
 /* ===========================================================
    애니메이션
@@ -455,10 +382,29 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ===========================================================
+   액자 하단 서명
+   =========================================================== */
+.signature {
+  margin: 34px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--ink-line);
+  text-align: center;
+  font-family: "Gowun Batang", serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
+  color: var(--ink-soft);
+}
+
+.signature b {
+  font-weight: 700;
+  color: var(--dan-red);
+  letter-spacing: 0.2em;
 }
